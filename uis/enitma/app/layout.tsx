@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 import SpaceAssistant from "@/components/SpaceAssistant";
 
 export const metadata: Metadata = {
@@ -22,14 +23,6 @@ export const metadata: Metadata = {
     description: "Intelligence that moves industries forward."
   }
 };
-
-const NAV = [
-  { label: "Inicio", href: "/" },
-  { label: "Aviation Intelligence", href: "/#aviation" },
-  { label: "Space Technology", href: "/#space" },
-  { label: "Tecnologías", href: "/#technologies" },
-  { label: "Contacto", href: "/#contact" }
-];
 
 // JSON-LD Organization + WebSite (sin datos estructurados falsos).
 const jsonLd = {
@@ -63,38 +56,33 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <a href="#main" className="skip-link">Saltar al contenido</a>
 
-        <header className="sticky top-0 z-40 border-b border-white/10 bg-space-950/80 backdrop-blur-xl">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-            <Link href="/" className="flex items-center gap-2 text-lg font-bold tracking-tight text-white">
-              <span aria-hidden="true" className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-sky-500 text-sm">e</span>
-              enITma
-            </Link>
-            <nav aria-label="Navegación principal" className="hidden md:block">
-              <ul className="flex items-center gap-6">
-                {NAV.map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} className="text-sm font-medium text-slate-300 transition-colors hover:text-white">
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-        </header>
+        <Navbar />
 
         <main id="main">{children}</main>
 
         <footer className="border-t border-white/10 bg-space-950">
-          <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
-            <p className="text-sm font-semibold text-white">enITma — The efficiency experts</p>
-            <p className="mt-2 max-w-2xl text-sm text-slate-400">
-              Tecnología, datos e inteligencia artificial para la industria aérea. Aplicaciones
-              potenciales a la industria espacial (exploratorias).
-            </p>
-            <p className="mt-4 text-xs text-slate-500">
-              © 2025 enITma S.A. de C.V. · Presencia declarada: EE. UU., México, Guatemala, Honduras,
-              El Salvador, Costa Rica, Panamá, Colombia, Perú y España.
+          <div className="container-enitma py-12">
+            <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+              <div className="max-w-sm">
+                <p className="flex items-center gap-2 text-lg font-bold text-white">
+                  <span aria-hidden="true" className="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-signal-500 text-sm font-bold text-white">e</span>
+                  enITma
+                </p>
+                <p className="mt-3 t-small">
+                  Tecnología, datos e inteligencia artificial para la industria aérea, con
+                  aplicaciones potenciales a la industria espacial.
+                </p>
+              </div>
+              <nav aria-label="Enlaces del pie" className="grid grid-cols-2 gap-x-12 gap-y-2 text-sm">
+                <Link href="/soluciones" className="text-slate-300 hover:text-white">Soluciones</Link>
+                <Link href="/aviation" className="text-slate-300 hover:text-white">Aviation</Link>
+                <Link href="/space" className="text-slate-300 hover:text-white">Space</Link>
+                <Link href="/contacto" className="text-slate-300 hover:text-white">Contacto</Link>
+              </nav>
+            </div>
+            <p className="mt-8 border-t border-white/10 pt-6 t-caption">
+              © 2025 enITma S.A. de C.V. · The efficiency experts. Presencia declarada: EE. UU.,
+              México, Guatemala, Honduras, El Salvador, Costa Rica, Panamá, Colombia, Perú y España.
             </p>
           </div>
         </footer>

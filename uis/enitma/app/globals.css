@@ -36,23 +36,92 @@
 }
 
 @layer components {
+  /* --- Layout --- */
+  .container-enitma {
+    @apply mx-auto max-w-7xl px-6 lg:px-8;
+  }
+  .section {
+    @apply py-20 lg:py-24;
+  }
+
+  /* --- Tipografía (jerarquía única) --- */
+  .t-display {
+    @apply text-4xl font-bold leading-tight tracking-tight text-white sm:text-6xl;
+  }
+  .t-h1 {
+    @apply text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl;
+  }
+  .t-h2 {
+    @apply text-3xl font-bold tracking-tight text-white sm:text-4xl;
+  }
+  .t-h3 {
+    @apply text-lg font-semibold text-white;
+  }
+  .t-body-lg {
+    @apply text-lg leading-relaxed text-slate-300;
+  }
+  .t-body {
+    @apply text-base leading-relaxed text-slate-300;
+  }
+  .t-small {
+    @apply text-sm text-slate-400;
+  }
+  .t-caption {
+    @apply text-xs text-slate-500;
+  }
+  /* Ancho de lectura cómodo para párrafos largos. */
+  .prose-width {
+    @apply max-w-prose;
+  }
+
   .skip-link {
     @apply absolute left-4 top-4 z-50 -translate-y-24 rounded-full bg-sky-500 px-4 py-2 text-white transition-transform focus:translate-y-0;
   }
+
+  /* --- Botones (roles consistentes) --- */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-400 disabled:cursor-not-allowed disabled:opacity-60;
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 ease-enitma hover:bg-sky-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 ease-enitma hover:border-white/40 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-60;
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors hover:border-signal-400 hover:text-signal-400;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 ease-enitma hover:border-signal-400 hover:text-signal-400;
   }
+
+  /* --- Superficies --- */
   .card {
     @apply rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur;
   }
+  .card-hover {
+    @apply transition duration-200 ease-enitma hover:-translate-y-0.5 hover:border-white/20 hover:shadow-elevated;
+  }
+
   .eyebrow {
     @apply mb-3 inline-block text-xs font-semibold uppercase tracking-[0.2em] text-signal-400;
   }
   .flow-step {
     @apply rounded-lg border border-white/10 bg-space-800 px-3 py-2 text-xs font-semibold uppercase tracking-wider text-slate-200;
+  }
+
+  /* --- Badges de estado --- */
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+  .badge-neutral {
+    @apply bg-white/10 text-slate-200;
+  }
+  .badge-success {
+    @apply bg-success-500/15 text-success-400;
+  }
+  .badge-warning {
+    @apply bg-warning-500/15 text-warning-400;
+  }
+  .badge-danger {
+    @apply bg-danger-500/15 text-danger-400;
+  }
+  .badge-info {
+    @apply bg-sky-500/15 text-sky-400;
   }
 
   /* Puntos animados (indicador "escribiendo" / online) */

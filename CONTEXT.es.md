@@ -104,7 +104,24 @@ respuesta → guardrail de salida. Abstracción `AIModelProvider` para conmutar 
 ## APIs
 
 - `POST /api/space-ai/chat` ✅ — pipeline completo del asistente.
+- `POST /invoices/presign` ✅ — URL prefirmada para subir facturas PDF a S3 (backoffice).
 - (Se conserva `services/api` de TrackFlow: incidencias e inventario.)
+
+## Invoice Module (Backoffice)
+
+Módulo **Facturas** (`uis/backoffice` → `/facturas`) para cargar PDFs con
+previsualización local y subida segura a S3 vía **URL prefirmada** (el frontend no
+maneja credenciales de AWS; las custodia `services/api`). Si no hay bucket configurado,
+funciona en modo simulado para demo local.
+
+**Fase 1 (implementado):** ✅ selección PDF · ✅ drag & drop · ✅ validación PDF · ✅ preview
+local (Object URL) · ✅ información del archivo · ✅ eliminar/cambiar · ✅ subida a S3
+(presigned) · 🟡 progreso de subida.
+
+**Fases posteriores (NO implementadas):** 🔵 Amazon Textract · 🔵 OCR · 🔵 extracción de
+datos · 🔵 validación por IA · 🔵 inteligencia financiera · 🔵 procesamiento automático ·
+🔵 historial de facturas. No se presentan como implementadas. Detalle en `MVP_Ljimenez.md`
+(sección "Invoice Module").
 
 ## Data
 

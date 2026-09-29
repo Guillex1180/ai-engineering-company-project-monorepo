@@ -8,15 +8,20 @@ interface Message {
 }
 
 const WELCOME =
-  "Hola, soy enITma Space AI. Respondo exclusivamente sobre las capacidades tecnológicas de " +
-  "enITma aplicadas a la Industria Espacial: Space AI, Mission Intelligence, Satellite Operations, " +
-  "Space Data, Ground Operations, Predictive Intelligence y Automation. ¿En qué puedo ayudarte?";
+  "Hola. Soy el asistente de enITma. Puedo ayudarte a conocer nuestras soluciones, tecnologías, " +
+  "experiencia en aviación y posibles aplicaciones para la industria espacial.";
 
-const QUICK = [
-  "¿Cómo puede enITma aplicar IA a operaciones espaciales?",
-  "¿Cómo usar IA para detectar anomalías de telemetría de satélites?",
-  "¿Cómo aplicar Document Intelligence al sector espacial?",
-  "¿Cómo usar inteligencia predictiva en operaciones de misión?"
+interface QuickAction {
+  label: string; // texto corto para el chip
+  query: string; // pregunta completa que se envía al asistente
+}
+
+const QUICK: QuickAction[] = [
+  { label: "¿Qué es enITma?", query: "¿Qué es enITma y a qué se dedica?" },
+  { label: "Soluciones para aerolíneas", query: "¿Qué soluciones tiene enITma para aerolíneas?" },
+  { label: "Inteligencia Artificial", query: "¿Cómo aplica enITma la inteligencia artificial?" },
+  { label: "Financial Intelligence", query: "¿Qué es enITma Financial Trust AI?" },
+  { label: "Space Technology", query: "¿Cómo puede enITma aplicar su tecnología a la industria espacial?" }
 ];
 
 export default function SpaceAssistant() {
@@ -25,7 +30,7 @@ export default function SpaceAssistant() {
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const [typing, setTyping] = useState(false);
-  const [suggestions, setSuggestions] = useState<string[]>(QUICK);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const panelRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
@@ -140,7 +145,7 @@ export default function SpaceAssistant() {
         aria-controls="space-ai-panel"
         className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-sky-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/30 transition-transform hover:scale-105"
       >
-        <span aria-hidden="true">🛰️</span> Ask enITma Space AI
+        <span aria-hidden="true">✨</span> Ask enITma AI
       </button>
 
       {open ? (
@@ -157,9 +162,9 @@ export default function SpaceAssistant() {
             {/* Header */}
             <header className="flex items-center justify-between border-b border-white/10 bg-space-800 px-4 py-3">
               <div>
-                <h2 id="space-ai-title" className="text-sm font-semibold text-white">enITma Space AI</h2>
+                <h2 id="space-ai-title" className="text-sm font-semibold text-white">enITma AI</h2>
                 <p className="flex items-center gap-1.5 text-xs text-emerald-300">
-                  <span aria-hidden="true" className="pulse-dot" /> AI ONLINE · Intelligence for the Space Industry
+                  <span aria-hidden="true" className="pulse-dot" /> How can I help you?
                 </p>
               </div>
               <button
@@ -179,7 +184,7 @@ export default function SpaceAssistant() {
               ref={logRef}
               role="log"
               aria-live="polite"
-              aria-label="Conversación con enITma Space AI"
+              aria-label="Conversación con enITma AI"
               className="flex-1 space-y-3 overflow-y-auto px-4 py-4"
             >
               {messages.map((m, i) => (
@@ -191,7 +196,7 @@ export default function SpaceAssistant() {
                         : "max-w-[85%] whitespace-pre-line rounded-2xl rounded-bl-sm bg-white/10 px-4 py-2 text-sm text-slate-200"
                     }
                   >
-                    <span className="sr-only">{m.role === "user" ? "Tú: " : "enITma Space AI: "}</span>
+                    <span className="sr-only">{m.role === "user" ? "Tú: " : "enITma AI: "}</span>
                     {m.text}
                   </div>
                 </div>
@@ -199,7 +204,7 @@ export default function SpaceAssistant() {
               {busy ? (
                 <div className="flex justify-start">
                   <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm bg-white/10 px-4 py-3 text-sm text-slate-400">
-                    <span className="sr-only">enITma Space AI está analizando…</span>
+                    <span className="sr-only">enITma AI está analizando…</span>
                     <span aria-hidden="true" className="typing-dot" />
                     <span aria-hidden="true" className="typing-dot" style={{ animationDelay: "0.15s" }} />
                     <span aria-hidden="true" className="typing-dot" style={{ animationDelay: "0.3s" }} />
@@ -208,23 +213,35 @@ export default function SpaceAssistant() {
               ) : null}
             </div>
 
-            {/* Preguntas de seguimiento (dinámicas según la última respuesta) */}
+            {/* Quick actions iniciales o seguimiento dinámico según la respuesta */}
             <div className="border-t border-white/10 px-4 py-2">
               <p className="mb-1.5 text-[10px] uppercase tracking-wider text-slate-500">
-                {messages.length > 1 ? "Puedes seguir con" : "Preguntas rápidas"}
+                {suggestions.length > 0 ? "Puedes seguir con" : "Prueba con"}
               </p>
               <div className="flex flex-wrap gap-1.5">
-                {suggestions.map((q) => (
-                  <button
-                    key={q}
-                    type="button"
-                    disabled={busy || typing}
-                    onClick={() => send(q)}
-                    className="rounded-full border border-white/15 px-2.5 py-1 text-[11px] text-slate-300 hover:border-signal-400 hover:text-signal-400 disabled:opacity-50"
-                  >
-                    {q.length > 34 ? q.slice(0, 32) + "…" : q}
-                  </button>
-                ))}
+                {suggestions.length > 0
+                  ? suggestions.map((q) => (
+                      <button
+                        key={q}
+                        type="button"
+                        disabled={busy || typing}
+                        onClick={() => send(q)}
+                        className="rounded-full border border-white/15 px-2.5 py-1 text-[11px] text-slate-300 hover:border-signal-400 hover:text-signal-400 disabled:opacity-50"
+                      >
+                        {q.length > 34 ? q.slice(0, 32) + "…" : q}
+                      </button>
+                    ))
+                  : QUICK.map((qa) => (
+                      <button
+                        key={qa.label}
+                        type="button"
+                        disabled={busy || typing}
+                        onClick={() => send(qa.query)}
+                        className="rounded-full border border-white/15 px-2.5 py-1 text-[11px] text-slate-300 hover:border-signal-400 hover:text-signal-400 disabled:opacity-50"
+                      >
+                        {qa.label}
+                      </button>
+                    ))}
               </div>
             </div>
 
@@ -250,7 +267,7 @@ export default function SpaceAssistant() {
                     void send(input);
                   }
                 }}
-                placeholder="Pregunta sobre enITma + espacio…"
+                placeholder="Pregunta sobre enITma…"
                 className="block w-full resize-none rounded-xl border border-white/15 bg-space-950 px-3 py-2 text-sm text-white placeholder:text-slate-500 focus:border-signal-400 disabled:opacity-60"
               />
               <button type="submit" disabled={busy || typing} className="btn-primary shrink-0 px-4 py-2">Enviar</button>

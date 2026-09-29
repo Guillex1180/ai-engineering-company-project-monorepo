@@ -269,6 +269,58 @@ No push/PR sin aprobación.
 
 ---
 
+## 51. Invoice Module (Backoffice)
+
+Módulo **Facturas** en `uis/backoffice` (`/facturas`). Carga de PDFs de factura con
+previsualización local y subida a S3 mediante **URL prefirmada** (el frontend nunca
+maneja credenciales de AWS).
+
+### Phase 1 (implementado)
+
+- ✅ PDF selection (selector de archivo)
+- ✅ Drag & Drop
+- ✅ PDF validation (tipo/tamaño; admite archivos mayores de 1 MB)
+- ✅ Local PDF Preview (Object URL en `<iframe>`, revocada al cambiar/eliminar)
+- ✅ File information (nombre, tipo, tamaño, estado)
+- ✅ Remove / Replace (libera Object URL para evitar memory leaks)
+- ✅ S3 Upload (presigned URL desde `services/api`; método PUT directo a S3)
+- 🟡 Upload progress (porcentaje vía `XMLHttpRequest.upload.onprogress` cuando es computable)
+- ⚪ Modo simulado local si no hay bucket configurado (para demo sin credenciales)
+
+### Fases posteriores (NO implementadas)
+
+- 🔵 Amazon Textract
+- 🔵 OCR
+- 🔵 Invoice Extraction (proveedor, número, fecha, moneda, subtotal, impuestos, total)
+- 🔵 AI Validation
+- 🔵 Financial Intelligence
+- 🔵 Automatic Processing (conciliación, movimiento automático a `procesadas/`)
+- 🔵 Invoice History
+
+### Arquitectura
+
+- **Frontend:** `app/facturas/{layout,page}.tsx` + `components/InvoicesView.tsx`
+  (máquina de estados EMPTY · SELECTED · VALIDATING · READY · UPLOADING · SUCCESS · ERROR).
+  Cliente API en `lib/invoices.ts`. Responsive desktop/tablet/móvil.
+- **Backend:** `services/api/app/invoices.py` — `POST /invoices/presign` (valida PDF,
+  firma con boto3 si hay bucket, degrada a `mode="simulated"` si no). Protegido con
+  `require_user`. No expone secretos ni detalle del bucket.
+- **Preparado sin implementar:** el visor deja hueco para un panel de "Datos extraídos"
+  + validación/aprobación en fases posteriores.
+
+### Environment Variables (servidor, sin secretos en repo)
+
+| VARIABLE | DESCRIPTION | REQUIRED | EXAMPLE |
+|----------|-------------|----------|---------|
+| `INVOICES_S3_BUCKET` | Bucket S3 para las facturas | No (si falta → modo simulado) | `mis-facturas` |
+| `AWS_REGION` | Región del bucket | Solo S3 real | `us-east-1` |
+| `INVOICES_S3_PREFIX` | Prefijo/carpeta lógica | No (def. `facturas/entrantes`) | `facturas/entrantes` |
+| `INVOICES_MAX_SIZE_BYTES` | Tope de tamaño del PDF | No (def. 25 MB) | `26214400` |
+| `INVOICES_PRESIGN_EXPIRES` | Validez de la URL (s) | No (def. 900) | `900` |
+| `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` | Credenciales AWS | Solo S3 real | *(secreto, no en repo; preferible rol IAM)* |
+
+---
+
 ## Estado consolidado
 
 | Componente | Estado |
@@ -279,5 +331,7 @@ No push/PR sin aprobación.
 | RAG local sobre KB | ✅ |
 | AIModelProvider (mock) | ✅ |
 | Prevención de alucinaciones y prompt-injection | ✅ |
+| Módulo Facturas — Fase 1 (preview local + S3 presigned upload) | ✅ |
+| Facturas — Textract/OCR/extracción/IA/historial | 🔵 PLANNED |
 | Bedrock/OpenAI, vector DB, reranker | 🔵 PLANNED |
 | Docker de la app enITma, AWS, CI/CD | 🔵 PLANNED |
