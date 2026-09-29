@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AppSwitcher from "@/components/AppSwitcher";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,10 +35,15 @@ export default function RootLayout({
               </span>
               <span className="text-sm font-semibold text-white">TrackFlow</span>
             </div>
-            <p className="px-5 pb-4 text-xs uppercase tracking-wider text-slate-400">
+            <p className="px-5 pb-2 text-xs uppercase tracking-wider text-slate-400">
               Backoffice interno
             </p>
-            <nav aria-label="Navegación del backoffice" className="px-3">
+            {/* Navegación cruzada entre las apps del proyecto. */}
+            <div className="border-y border-white/10 px-4 py-3">
+              <p className="mb-1.5 text-[10px] uppercase tracking-wider text-slate-500">Apps</p>
+              <AppSwitcher current="backoffice" />
+            </div>
+            <nav aria-label="Navegación del backoffice" className="px-3 pt-3">
               <ul className="space-y-1">
                 {NAV.map((item) => (
                   <li key={item.href}>

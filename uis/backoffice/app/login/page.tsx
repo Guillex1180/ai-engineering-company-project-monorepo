@@ -66,7 +66,7 @@ export default function LoginPage() {
           {submitting ? "Entrando…" : "Entrar"}
         </button>
 
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-600">
           Demo: usuario <code>operaciones</code> · contraseña <code>trackflow</code>
         </p>
       </form>

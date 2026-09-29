@@ -1,10 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { getOrders, InventoryApiError, type InventoryOrder } from "@/lib/inventory";
 import { ORDER_TYPE_LABELS, formatDateTime } from "@/lib/inventory-labels";
-
-type Phase = "loading" | "success" | "empty" | "error";
+import { useAsyncData } from "@/lib/useAsyncData";
 
 function TypeBadge({ type }: { type: InventoryOrder["type"] }) {
   const isInbound = type === "inbound";
@@ -23,26 +22,13 @@ function TypeBadge({ type }: { type: InventoryOrder["type"] }) {
 }
 
 export default function OrdersView() {
-  const [orders, setOrders] = useState<InventoryOrder[]>([]);
-  const [phase, setPhase] = useState<Phase>("loading");
-  const [error, setError] = useState("");
-
-  const load = useCallback(async () => {
-    setPhase("loading");
-    setError("");
-    try {
-      const data = await getOrders();
-      setOrders(data);
-      setPhase(data.length === 0 ? "empty" : "success");
-    } catch (err) {
-      setError(err instanceof InventoryApiError ? err.message : "No fue posible cargar el historial.");
-      setPhase("error");
-    }
-  }, []);
-
-  useEffect(() => {
-    void load();
-  }, [load]);
+  const fetcher = useCallback(() => getOrders(), []);
+  const { phase, data, error, reload } = useAsyncData<InventoryOrder[]>(fetcher, {
+    isEmpty: (list) => list.length === 0,
+    mapError: (err) =>
+      err instanceof InventoryApiError ? err.message : "No fue posible cargar el historial."
+  });
+  const orders = data ?? [];
 
   if (phase === "loading") {
     return <p role="status" className="text-sm text-slate-500">Cargando historial…</p>;
@@ -51,7 +37,7 @@ export default function OrdersView() {
     return (
       <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">
         {error}
-        <button type="button" className="btn-primary mt-3" onClick={() => void load()}>Reintentar</button>
+        <button type="button" className="btn-primary mt-3" onClick={reload}>Reintentar</button>
       </div>
     );
   }

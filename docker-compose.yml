@@ -2,6 +2,7 @@
 # Desde la raíz:  docker compose up
 #   Website:    http://localhost:3000
 #   Backoffice: http://localhost:3001
+#   enITma:     http://localhost:3002  (Aviation & Space + Space AI)
 #   Backend:    http://localhost:8000  (docs en /docs)
 #
 # Las variables provienen de .env (ver .env.example). No hay secretos.
@@ -42,6 +43,11 @@ services:
       # eso apuntan a localhost y NO al hostname interno "backend".
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000}
       NEXT_PUBLIC_INVENTORY_API_URL: ${NEXT_PUBLIC_INVENTORY_API_URL:-http://localhost:8000}
+      # URLs de las apps del proyecto, para la navegación cruzada entre ellas.
+      # Son públicas (las resuelve el navegador en el host); no contienen secretos.
+      NEXT_PUBLIC_WEBSITE_URL: ${NEXT_PUBLIC_WEBSITE_URL:-http://localhost:3000}
+      NEXT_PUBLIC_BACKOFFICE_URL: ${NEXT_PUBLIC_BACKOFFICE_URL:-http://localhost:3001}
+      NEXT_PUBLIC_TALENT_URL: ${NEXT_PUBLIC_TALENT_URL:-http://localhost:3002}
       # Hot reload fiable en Docker Desktop/macOS (file watching por polling).
       WATCHPACK_POLLING: "true"
       CHOKIDAR_USEPOLLING: "true"
@@ -60,6 +66,29 @@ services:
       - /app/backoffice/.next
     depends_on:
       - backend
+    networks:
+      - trackflow-network
+
+  # Plataforma enITma (Next.js: Home + API del asistente enITma Space AI).
+  enitma:
+    build:
+      context: ./uis/enitma
+    container_name: trackflow-enitma
+    environment:
+      # El asistente usa el proveedor local "mock" por defecto (sin credenciales).
+      # Para conectar OpenAI, define estas variables en un .env del servidor
+      # (nunca en el repo). Si OPENAI_API_KEY no está, el provider cae al mock.
+      AI_PROVIDER: ${AI_PROVIDER:-mock}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
+    ports:
+      - "${ENITMA_PORT:-3002}:3002"
+    volumes:
+      - ./uis/enitma:/app
+      - /app/node_modules
+      - /app/.next
     networks:
       - trackflow-network
 

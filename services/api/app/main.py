@@ -16,7 +16,7 @@ import sys
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, Response
+from fastapi.responses import HTMLResponse, JSONResponse, Response
 
 # Hace importable el paquete compartido sin instalación de workspaces.
 _REPO_ROOT = os.path.dirname(
@@ -49,6 +49,40 @@ app.add_middleware(
 # Módulos de dominio.
 app.include_router(auth_router)
 app.include_router(inventory_router)
+
+
+@app.get("/", include_in_schema=False)
+def root() -> HTMLResponse:
+    """Página de bienvenida del backend con enlaces a la documentación y endpoints."""
+    html = """<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TrackFlow API</title>
+<style>
+  body { font-family: ui-sans-serif, system-ui, sans-serif; background:#0a0f1e; color:#e2e8f0; margin:0; padding:2.5rem 1.5rem; }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  h1 { color:#fff; margin-bottom:.25rem; } .sub { color:#94a3b8; margin-top:0; }
+  a { color:#38bdf8; }
+  ul { line-height:1.9; } code { background:#111a30; padding:.15rem .4rem; border-radius:.35rem; }
+  .card { background:#111a30; border:1px solid #1b2745; border-radius:.75rem; padding:1.25rem 1.5rem; margin-top:1.5rem; }
+</style></head>
+<body><div class="wrap">
+  <h1>TrackFlow API</h1>
+  <p class="sub">Backend FastAPI operativo. Esta es una API: no tiene interfaz gráfica, se consume por endpoints.</p>
+  <div class="card">
+    <p><strong>Documentación interactiva:</strong> <a href="/docs">/docs</a> (Swagger) · <a href="/redoc">/redoc</a></p>
+    <p><strong>Salud:</strong> <a href="/health">/health</a></p>
+    <p><strong>Endpoints principales:</strong></p>
+    <ul>
+      <li><code>POST /api/incidents/analyze</code> — analizador de incidencias (CSV)</li>
+      <li><code>GET /api/incidents/results/export</code> — exportar último análisis</li>
+      <li><code>POST /auth/login</code> — autenticación (backoffice)</li>
+      <li><code>GET /inventory/products</code>, <code>GET /inventory/orders</code></li>
+      <li><code>POST /inventory/orders/inbound</code>, <code>POST /inventory/orders/outbound</code></li>
+    </ul>
+  </div>
+</div></body></html>"""
+    return HTMLResponse(content=html)
 
 # Almacenamiento en memoria del ÚLTIMO análisis.
 # Limitación documentada: no hay persistencia; se pierde al reiniciar el proceso

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AppSwitcher from "@/components/AppSwitcher";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -31,11 +32,14 @@ export default function RootLayout({
                   <span className="block text-xs text-slate-300">Pipeline de Talento</span>
                 </span>
               </Link>
-              <nav aria-label="Navegación principal">
-                <Link href="/" className="text-sm font-medium text-slate-200 hover:text-white">
-                  Candidaturas
-                </Link>
-              </nav>
+              <div className="flex items-center gap-5">
+                <nav aria-label="Navegación principal">
+                  <Link href="/" className="text-sm font-medium text-slate-200 hover:text-white">
+                    Candidaturas
+                  </Link>
+                </nav>
+                <AppSwitcher current="talent" />
+              </div>
             </div>
           </header>
 

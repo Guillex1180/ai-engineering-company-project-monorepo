@@ -1,34 +1,20 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import Link from "next/link";
 import { getProducts, InventoryApiError, type InventoryProduct } from "@/lib/inventory";
 import { CATEGORY_LABELS, WAREHOUSE_LABELS, labelFor } from "@/lib/inventory-labels";
+import { useAsyncData } from "@/lib/useAsyncData";
 import StockBadge from "./StockBadge";
 
-type Phase = "loading" | "success" | "empty" | "error";
-
 export default function ProductsView() {
-  const [products, setProducts] = useState<InventoryProduct[]>([]);
-  const [phase, setPhase] = useState<Phase>("loading");
-  const [error, setError] = useState("");
-
-  const load = useCallback(async () => {
-    setPhase("loading");
-    setError("");
-    try {
-      const data = await getProducts();
-      setProducts(data);
-      setPhase(data.length === 0 ? "empty" : "success");
-    } catch (err) {
-      setError(err instanceof InventoryApiError ? err.message : "No fue posible cargar el inventario.");
-      setPhase("error");
-    }
-  }, []);
-
-  useEffect(() => {
-    void load();
-  }, [load]);
+  const fetcher = useCallback(() => getProducts(), []);
+  const { phase, data, error, reload } = useAsyncData<InventoryProduct[]>(fetcher, {
+    isEmpty: (list) => list.length === 0,
+    mapError: (err) =>
+      err instanceof InventoryApiError ? err.message : "No fue posible cargar el inventario."
+  });
+  const products = data ?? [];
 
   if (phase === "loading") {
     return <p role="status" className="text-sm text-slate-500">Cargando inventario…</p>;
@@ -37,7 +23,7 @@ export default function ProductsView() {
     return (
       <div role="alert" className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800">
         {error}
-        <button type="button" className="btn-primary mt-3" onClick={() => void load()}>
+        <button type="button" className="btn-primary mt-3" onClick={reload}>
           Reintentar
         </button>
       </div>
