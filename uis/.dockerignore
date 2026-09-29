@@ -1,0 +1,20 @@
+# Dependencias (se instalan dentro de la imagen)
+node_modules
+website/node_modules
+backoffice/node_modules
+
+# Builds / caché de Next y Tailwind
+.next
+website/.next
+backoffice/.next
+website/dist
+
+# Variables de entorno locales
+.env
+.env.*
+website/.env*
+backoffice/.env*
+
+# Logs y misc
+*.log
+.DS_Store

@@ -30,6 +30,36 @@ This repository is the **starter template** for transversal projects. You will w
 
 ---
 
+## Desarrollo con Docker (plataforma completa)
+
+Desde la **raíz** del repositorio, con Docker instalado y en marcha:
+
+```bash
+cp .env.example .env   # solo la primera vez (no contiene secretos)
+docker compose up
+```
+
+Esto levanta toda la plataforma de desarrollo (sin instalar Node ni Python en el host):
+
+| Servicio     | Contenedor              | URL                     |
+| ------------ | ----------------------- | ----------------------- |
+| Website      | `interfaces` (:3000)    | http://localhost:3000   |
+| Backoffice   | `interfaces` (:3001)    | http://localhost:3001   |
+| Backend API  | `backend` (:8000)       | http://localhost:8000 (docs en `/docs`) |
+
+- **`interfaces`** ejecuta el website (Tailwind estático) y el backoffice (Next.js) en un único
+  contenedor (ver `uis/Dockerfile` y `uis/start.sh`).
+- **`backend`** ejecuta la API FastAPI con `uvicorn --reload` (ver `services/Dockerfile`).
+- Ambos comparten la red `trackflow-network`. El código se monta por bind mount para **hot reload**;
+  los `node_modules` se preservan con volúmenes anónimos.
+- **Navegador vs red Docker:** el frontend llama al backend con `NEXT_PUBLIC_API_URL=http://localhost:8000`
+  porque el navegador corre en el host. La comunicación contenedor→contenedor (si se añade) usaría el
+  hostname del servicio (`http://backend:8000`).
+
+Guía detallada y solución de problemas: [`docs/docker-dev.md`](./docs/docker-dev.md).
+
+---
+
 ## How to think about this monorepo
 
 You are building **one company** across many milestones and projects. Each top-level folder has a **single responsibility** — like a real engineering team repo.

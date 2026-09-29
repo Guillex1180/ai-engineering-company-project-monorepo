@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO básico -->
+    <title>TrackFlow — Logística que escala con tu e-commerce</title>
+    <meta
+      name="description"
+      content="Gestión de almacenes, entregas de última milla y logística inversa en Estados Unidos y España. Más de 15 años ayudando a marcas de moda, electrónica y cosmética."
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0a0a0f" />
+    <link rel="canonical" href="https://trackflow.com" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="TrackFlow" />
+    <meta property="og:title" content="TrackFlow — Logística que escala con tu e-commerce" />
+    <meta
+      property="og:description"
+      content="Gestión de almacenes, última milla y logística inversa en Estados Unidos y España."
+    />
+    <meta property="og:url" content="https://trackflow.com" />
+    <meta property="og:locale" content="es_ES" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TrackFlow — Logística que escala con tu e-commerce" />
+    <meta
+      name="twitter:description"
+      content="Gestión de almacenes, última milla y logística inversa en Estados Unidos y España."
+    />
+
+    <link rel="stylesheet" href="./dist/output.css" />
+
+    <!-- Schema.org (Organization) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "TrackFlow",
+        "description": "Gestión de almacenes y entregas de última milla para e-commerce",
+        "url": "https://trackflow.com",
+        "foundingDate": "2009",
+        "address": [
+          {
+            "@type": "PostalAddress",
+            "addressCountry": "US",
+            "addressLocality": "Los Ángeles",
+            "addressRegion": "California"
+          },
+          {
+            "@type": "PostalAddress",
+            "addressCountry": "ES",
+            "addressLocality": "Zaragoza",
+            "addressRegion": "Aragón"
+          }
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+1-213-555-0147",
+          "contactType": "sales",
+          "availableLanguage": ["Spanish", "English"]
+        },
+        "sameAs": ["https://linkedin.com/company/trackflow"],
+        "areaServed": [
+          {
+            "@type": "Country",
+            "name": "Estados Unidos"
+          },
+          {
+            "@type": "Country",
+            "name": "Spain"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body class="bg-white font-sans text-slate-900 antialiased">
+    <a href="#main" class="skip-link">Saltar al contenido principal</a>
+
+    <!-- ============================= HEADER ============================= -->
+    <header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+        <a href="#inicio" class="flex items-center gap-2.5 text-lg font-bold tracking-tight text-slate-900">
+          <span aria-hidden="true" class="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-ink-900">
+            <svg class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 7h13v10H3z M16 10h3l2 3v4h-5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+              <circle cx="7" cy="18" r="1.6" fill="currentColor" />
+              <circle cx="17.5" cy="18" r="1.6" fill="currentColor" />
+            </svg>
+          </span>
+          TrackFlow
+        </a>
+
+        <!-- Botón de menú móvil -->
+        <button
+          type="button"
+          id="menu-toggle"
+          class="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:bg-slate-100 md:hidden"
+          aria-controls="primary-nav"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Abrir menú de navegación</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <nav id="primary-nav" aria-label="Navegación principal" class="hidden md:block">
+          <ul class="flex items-center gap-8">
+            <li><a href="#inicio" class="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">Inicio</a></li>
+            <li><a href="#servicios" class="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">Servicios</a></li>
+            <li><a href="#cobertura" class="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">Cobertura</a></li>
+            <li><a href="#contacto" class="text-sm font-medium text-slate-600 transition-colors hover:text-slate-900">Contacto</a></li>
+            <li>
+              <button type="button" data-chat-open aria-controls="chat-panel" aria-expanded="false"
+                class="inline-flex items-center gap-1.5 text-sm font-medium text-brand-700 transition-colors hover:text-brand-800">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5M21 12a8 8 0 01-11.5 7.2L4 20l1-4.2A8 8 0 1121 12z" />
+                </svg>
+                Asistente IA
+              </button>
+            </li>
+            <li>
+              <a href="#formulario" class="rounded-full bg-ink-900 px-5 py-2 text-sm font-semibold text-white transition-colors hover:bg-ink-700">
+                Solicitar información
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Navegación desplegable en móvil -->
+      <nav id="mobile-nav" aria-label="Navegación principal móvil" class="hidden border-t border-slate-200 md:hidden">
+        <ul class="mx-auto max-w-7xl px-6 py-2">
+          <li><a href="#inicio" class="block px-2 py-3 font-medium text-slate-700 hover:text-slate-900">Inicio</a></li>
+          <li><a href="#servicios" class="block px-2 py-3 font-medium text-slate-700 hover:text-slate-900">Servicios</a></li>
+          <li><a href="#cobertura" class="block px-2 py-3 font-medium text-slate-700 hover:text-slate-900">Cobertura</a></li>
+          <li><a href="#contacto" class="block px-2 py-3 font-medium text-slate-700 hover:text-slate-900">Contacto</a></li>
+          <li>
+            <button type="button" data-chat-open aria-controls="chat-panel" aria-expanded="false"
+              class="block w-full px-2 py-3 text-left font-semibold text-brand-700">Asistente IA</button>
+          </li>
+          <li><a href="#formulario" class="block px-2 py-3 font-semibold text-brand-600">Solicitar información</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- ============================= HERO ============================= -->
+      <section id="inicio" class="relative overflow-hidden bg-ink-900 text-white">
+        <!-- Fondo decorativo -->
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0">
+          <div class="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-brand-600/30 blur-3xl"></div>
+          <div class="absolute right-0 top-1/3 h-96 w-96 rounded-full bg-brand-500/20 blur-3xl"></div>
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0,rgba(10,10,15,0.6)_100%)]"></div>
+        </div>
+
+        <div class="relative mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-36">
+          <div class="max-w-3xl">
+            <span class="eyebrow text-brand-400">Operador logístico · EE. UU. &amp; España</span>
+            <h1 class="text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
+              Logística que escala con tu e-commerce
+            </h1>
+            <p class="mt-8 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+              Gestión de almacenes, entregas de última milla y logística inversa en Estados Unidos y España.
+              Más de 15 años ayudando a marcas de moda, electrónica y cosmética a crecer sin preocuparse por la
+              operación.
+            </p>
+            <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+              <a href="#formulario" class="btn-primary">Solicitar información</a>
+              <a href="#servicios" class="btn-on-dark">Ver servicios</a>
+            </div>
+          </div>
+
+          <!-- Métricas rápidas -->
+          <dl class="mt-20 grid max-w-3xl grid-cols-2 gap-8 border-t border-white/10 pt-10 sm:grid-cols-4">
+            <div>
+              <dt class="text-sm text-slate-400">Fundada en</dt>
+              <dd class="mt-1 text-3xl font-bold">2009</dd>
+            </div>
+            <div>
+              <dt class="text-sm text-slate-400">Profesionales</dt>
+              <dd class="mt-1 text-3xl font-bold">+130</dd>
+            </div>
+            <div>
+              <dt class="text-sm text-slate-400">Países</dt>
+              <dd class="mt-1 text-3xl font-bold">2</dd>
+            </div>
+            <div>
+              <dt class="text-sm text-slate-400">Años de experiencia</dt>
+              <dd class="mt-1 text-3xl font-bold">+15</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ============================= SERVICIOS ============================= -->
+      <section id="servicios" class="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+        <div class="max-w-2xl">
+          <span class="eyebrow">Servicios</span>
+          <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+            Una operación logística de extremo a extremo
+          </h2>
+          <p class="mt-5 text-lg text-slate-600">
+            Tres servicios integrados para que tu marca crezca sin fricción operativa.
+          </p>
+        </div>
+
+        <div class="mt-16 grid gap-6 md:grid-cols-3">
+          <article class="card">
+            <span aria-hidden="true" class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-6 9 6v10a1 1 0 01-1 1H4a1 1 0 01-1-1z M3 13h18 M9 20v-5h6v5" />
+              </svg>
+            </span>
+            <h3 class="text-xl font-semibold text-slate-900">Gestión de Almacenes</h3>
+            <ul class="mt-4 space-y-3 text-slate-600">
+              <li class="flex gap-2"><span aria-hidden="true" class="mt-1 text-brand-600">·</span>Almacenamiento, picking y packing</li>
+              <li class="flex gap-2"><span aria-hidden="true" class="mt-1 text-brand-600">·</span>Inventario en tiempo real</li>
+              <li class="flex gap-2"><span aria-hidden="true" class="mt-1 text-brand-600">·</span>Operamos almacenes en Los Ángeles y Zaragoza</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span aria-hidden="true" class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h11v8H3z M14 10h3l3 3v2h-6z M7 17.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z M17 17.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+              </svg>
+            </span>
+            <h3 class="text-xl font-semibold text-slate-900">Entregas de Última Milla</h3>
+            <ul class="mt-4 space-y-3 text-slate-600">
+              <li class="flex gap-2"><span aria-hidden="true" class="mt-1 text-brand-600">·</span>Red de carriers certificados en ambos países</li>
+              <li class="flex gap-2"><span aria-hidden="true" class="mt-1 text-brand-600">·</span>Seguimiento unificado de envíos</li>
+              <li class="flex gap-2"><span aria-hidden="true" class="mt-1 text-brand-600">·</span>Gestión de incidencias y devoluciones</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <span aria-hidden="true" class="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 9a8 8 0 0113.5-3L20 8 M20 15a8 8 0 01-13.5 3L4 16 M17 4v4h-4 M7 20v-4h4" />
+              </svg>
+            </span>
+            <h3 class="text-xl font-semibold text-slate-900">Logística Inversa</h3>
+            <ul class="mt-4 space-y-3 text-slate-600">
+              <li class="flex gap-2"><span aria-hidden="true" class="mt-1 text-brand-600">·</span>Gestión completa de devoluciones</li>
+              <li class="flex gap-2"><span aria-hidden="true" class="mt-1 text-brand-600">·</span>Inspección y reacondicionamiento</li>
+              <li class="flex gap-2"><span aria-hidden="true" class="mt-1 text-brand-600">·</span>Integración con tu plataforma de ventas</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============================= COBERTURA ============================= -->
+      <section id="cobertura" class="bg-slate-50">
+        <div class="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+          <div class="max-w-2xl">
+            <span class="eyebrow">Cobertura</span>
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+              Infraestructura propia en dos mercados
+            </h2>
+          </div>
+
+          <div class="mt-16 grid gap-6 md:grid-cols-2">
+            <article class="rounded-2xl border border-slate-200 bg-white p-8 lg:p-10">
+              <div class="flex items-center gap-3">
+                <span aria-hidden="true" class="text-3xl">🇺🇸</span>
+                <h3 class="text-2xl font-semibold text-slate-900">Estados Unidos</h3>
+              </div>
+              <ul class="mt-6 space-y-3 text-slate-600">
+                <li class="flex gap-3"><span aria-hidden="true" class="text-brand-600">—</span>Almacén en Los Ángeles</li>
+                <li class="flex gap-3"><span aria-hidden="true" class="text-brand-600">—</span>Cobertura nacional</li>
+                <li class="flex gap-3"><span aria-hidden="true" class="text-brand-600">—</span>Carriers: UPS, FedEx, DHL</li>
+              </ul>
+            </article>
+
+            <article class="rounded-2xl border border-slate-200 bg-white p-8 lg:p-10">
+              <div class="flex items-center gap-3">
+                <span aria-hidden="true" class="text-3xl">🇪🇸</span>
+                <h3 class="text-2xl font-semibold text-slate-900">España</h3>
+              </div>
+              <ul class="mt-6 space-y-3 text-slate-600">
+                <li class="flex gap-3"><span aria-hidden="true" class="text-brand-600">—</span>Almacén en Zaragoza</li>
+                <li class="flex gap-3"><span aria-hidden="true" class="text-brand-600">—</span>Cobertura peninsular e islas</li>
+                <li class="flex gap-3"><span aria-hidden="true" class="text-brand-600">—</span>Carriers: MRW, SEUR, DHL</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================= POR QUÉ TRACKFLOW ============================= -->
+      <section id="por-que" class="bg-ink-900 text-white">
+        <div class="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+          <div class="max-w-2xl">
+            <span class="eyebrow text-brand-400">Por qué TrackFlow</span>
+            <h2 class="text-3xl font-bold tracking-tight sm:text-5xl">
+              La ventaja de un operador binacional
+            </h2>
+          </div>
+
+          <div class="mt-16 grid gap-px overflow-hidden rounded-2xl bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="bg-ink-900 p-8">
+              <h3 class="text-lg font-semibold text-white">Operación binacional</h3>
+              <p class="mt-3 text-slate-400">El único operador con infraestructura propia en Estados Unidos y España.</p>
+            </div>
+            <div class="bg-ink-900 p-8">
+              <h3 class="text-lg font-semibold text-white">+130 profesionales</h3>
+              <p class="mt-3 text-slate-400">Dedicados a tu logística.</p>
+            </div>
+            <div class="bg-ink-900 p-8">
+              <h3 class="text-lg font-semibold text-white">Tecnología propia</h3>
+              <p class="mt-3 text-slate-400">Para visibilidad total de tu inventario.</p>
+            </div>
+            <div class="bg-ink-900 p-8">
+              <h3 class="text-lg font-semibold text-white">Especialización e-commerce</h3>
+              <p class="mt-3 text-slate-400">En moda, electrónica y cosmética.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================= FORMULARIO ============================= -->
+      <section id="formulario" class="bg-slate-50">
+        <div class="mx-auto max-w-3xl px-6 py-24 lg:px-8 lg:py-32">
+          <div class="text-center">
+            <span class="eyebrow">Solicita información</span>
+            <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+              Hablemos de tu logística
+            </h2>
+            <p id="form-intro" class="mx-auto mt-5 max-w-xl text-lg text-slate-600">
+              Cuéntanos sobre tu empresa y nuestro equipo comercial te contactará para conocer tus necesidades.
+            </p>
+          </div>
+
+          <!-- Mensaje de éxito (oculto hasta el envío correcto) -->
+          <div
+            id="success-message"
+            role="status"
+            aria-live="polite"
+            class="mt-10 hidden rounded-2xl border border-green-200 bg-green-50 p-8"
+          >
+            <h3 class="text-2xl font-bold text-green-800">¡Gracias por tu interés en TrackFlow!</h3>
+            <p class="mt-4 text-slate-700">
+              Hemos recibido tu solicitud. Nuestro equipo comercial revisará tu información y te contactará en las
+              próximas 24-48 horas para agendar una llamada y conocer tus necesidades logísticas en detalle.
+            </p>
+            <p class="mt-4 text-slate-700">
+              Si tienes alguna consulta urgente, escríbenos directamente a
+              <a class="font-medium text-brand-700 underline" href="mailto:comercial@trackflow.com">comercial@trackflow.com</a>
+            </p>
+          </div>
+
+          <form id="info-form" novalidate class="mt-10 rounded-3xl border border-slate-200 bg-white p-8 shadow-sm lg:p-10" aria-describedby="form-intro">
+            <div class="space-y-6">
+              <!-- Nombre de la empresa -->
+              <div>
+                <label for="company" class="field-label">Nombre de la empresa <span class="text-red-600">*</span></label>
+                <input type="text" id="company" name="company" class="field-input" autocomplete="organization"
+                  aria-required="true" aria-describedby="company-error" />
+                <p id="company-error" class="field-error hidden"></p>
+              </div>
+
+              <!-- Persona de contacto -->
+              <div>
+                <label for="contact" class="field-label">Persona de contacto <span class="text-red-600">*</span></label>
+                <input type="text" id="contact" name="contact" class="field-input" autocomplete="name"
+                  placeholder="Nombre y apellido" aria-required="true" aria-describedby="contact-error" />
+                <p id="contact-error" class="field-error hidden"></p>
+              </div>
+
+              <!-- Email corporativo -->
+              <div>
+                <label for="email" class="field-label">Email corporativo <span class="text-red-600">*</span></label>
+                <input type="email" id="email" name="email" class="field-input" autocomplete="email"
+                  placeholder="nombre@empresa.com" aria-required="true" aria-describedby="email-error" />
+                <p id="email-error" class="field-error hidden"></p>
+              </div>
+
+              <!-- Teléfono -->
+              <div>
+                <label for="phone" class="field-label">Teléfono <span class="text-red-600">*</span></label>
+                <input type="tel" id="phone" name="phone" class="field-input" autocomplete="tel"
+                  placeholder="+1 213 555 0147" aria-required="true" aria-describedby="phone-error" />
+                <p id="phone-error" class="field-error hidden"></p>
+              </div>
+
+              <!-- Sitio web (opcional) -->
+              <div>
+                <label for="website" class="field-label">Sitio web de la empresa</label>
+                <input type="url" id="website" name="website" class="field-input" autocomplete="url"
+                  placeholder="https://www.empresa.com" aria-describedby="website-error" />
+                <p id="website-error" class="field-error hidden"></p>
+              </div>
+
+              <!-- País de operación principal -->
+              <div>
+                <label for="country" class="field-label">País de operación principal <span class="text-red-600">*</span></label>
+                <select id="country" name="country" class="field-input" aria-required="true" aria-describedby="country-error">
+                  <option value="">Selecciona una opción</option>
+                  <option value="Estados Unidos">Estados Unidos</option>
+                  <option value="España">España</option>
+                  <option value="Ambos">Ambos</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <p id="country-error" class="field-error hidden"></p>
+              </div>
+
+              <!-- Tipo de producto -->
+              <div>
+                <label for="product" class="field-label">Tipo de producto <span class="text-red-600">*</span></label>
+                <select id="product" name="product" class="field-input" aria-required="true" aria-describedby="product-error">
+                  <option value="">Selecciona una opción</option>
+                  <option value="Moda">Moda</option>
+                  <option value="Electrónica">Electrónica</option>
+                  <option value="Cosmética">Cosmética</option>
+                  <option value="Alimentación">Alimentación</option>
+                  <option value="Otro">Otro</option>
+                </select>
+                <p id="product-error" class="field-error hidden"></p>
+              </div>
+
+              <!-- Volumen mensual estimado de envíos -->
+              <div>
+                <label for="volume" class="field-label">Volumen mensual estimado de envíos <span class="text-red-600">*</span></label>
+                <select id="volume" name="volume" class="field-input" aria-required="true"
+                  aria-describedby="volume-error volume-warning">
+                  <option value="">Selecciona una opción</option>
+                  <option value="0-100">0-100</option>
+                  <option value="101-500">101-500</option>
+                  <option value="501-2000">501-2000</option>
+                  <option value="2000+">2000+</option>
+                  <option value="No estoy seguro">No estoy seguro</option>
+                </select>
+                <p id="volume-error" class="field-error hidden"></p>
+                <p id="volume-warning" role="alert" class="mt-2 hidden rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800"></p>
+              </div>
+
+              <!-- Servicios de interés -->
+              <fieldset aria-describedby="services-error">
+                <legend class="field-label">Servicios de interés <span class="text-red-600">*</span></legend>
+                <div class="mt-2 grid gap-2 sm:grid-cols-3">
+                  <label class="flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-slate-700 hover:bg-slate-50">
+                    <input type="checkbox" name="services" value="Almacenaje" class="h-4 w-4 rounded border-slate-300 text-brand-600" />
+                    Almacenaje
+                  </label>
+                  <label class="flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-slate-700 hover:bg-slate-50">
+                    <input type="checkbox" name="services" value="Última milla" class="h-4 w-4 rounded border-slate-300 text-brand-600" />
+                    Última milla
+                  </label>
+                  <label class="flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-slate-700 hover:bg-slate-50">
+                    <input type="checkbox" name="services" value="Logística inversa" class="h-4 w-4 rounded border-slate-300 text-brand-600" />
+                    Logística inversa
+                  </label>
+                </div>
+                <p id="services-error" class="field-error hidden"></p>
+              </fieldset>
+
+              <!-- ¿Trabajas con otro 3PL? -->
+              <fieldset aria-describedby="tpl-error">
+                <legend class="field-label">¿Actualmente trabajas con otro 3PL? <span class="text-red-600">*</span></legend>
+                <div class="mt-2 space-y-2">
+                  <label class="flex items-center gap-2 text-slate-700">
+                    <input type="radio" name="tpl" value="Sí" class="h-4 w-4 border-slate-300 text-brand-600" />
+                    Sí
+                  </label>
+                  <label class="flex items-center gap-2 text-slate-700">
+                    <input type="radio" name="tpl" value="No" class="h-4 w-4 border-slate-300 text-brand-600" />
+                    No
+                  </label>
+                  <label class="flex items-center gap-2 text-slate-700">
+                    <input type="radio" name="tpl" value="Estoy evaluando opciones" class="h-4 w-4 border-slate-300 text-brand-600" />
+                    Estoy evaluando opciones
+                  </label>
+                </div>
+                <p id="tpl-error" class="field-error hidden"></p>
+              </fieldset>
+
+              <!-- Comentarios -->
+              <div>
+                <label for="comments" class="field-label">Comentarios o necesidades específicas</label>
+                <textarea id="comments" name="comments" rows="4" maxlength="500" class="field-input"
+                  aria-describedby="comments-help comments-error"></textarea>
+                <p id="comments-help" class="mt-1 text-sm text-slate-500">
+                  <span id="comments-count">0</span>/500 caracteres
+                </p>
+                <p id="comments-error" class="field-error hidden"></p>
+              </div>
+
+              <!-- Política de privacidad -->
+              <div>
+                <label class="flex items-start gap-2 text-slate-700">
+                  <input type="checkbox" id="privacy" name="privacy" class="mt-1 h-4 w-4 rounded border-slate-300 text-brand-600"
+                    aria-required="true" aria-describedby="privacy-error" />
+                  <span>Acepto la política de privacidad <span class="text-red-600">*</span></span>
+                </label>
+                <p id="privacy-error" class="field-error hidden"></p>
+              </div>
+
+              <div class="pt-2">
+                <button type="submit" class="btn-primary w-full sm:w-auto">Enviar solicitud</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============================= CONTACTO ============================= -->
+      <section id="contacto" class="mx-auto max-w-7xl px-6 py-24 lg:px-8 lg:py-32">
+        <div class="max-w-2xl">
+          <span class="eyebrow">Contacto</span>
+          <h2 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-5xl">Estamos a un mensaje</h2>
+        </div>
+        <ul class="mt-16 grid gap-6 sm:grid-cols-3">
+          <li class="rounded-2xl border border-slate-200 p-8">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">Email</h3>
+            <a class="mt-3 block text-lg font-medium text-brand-700 underline" href="mailto:comercial@trackflow.com">comercial@trackflow.com</a>
+          </li>
+          <li class="rounded-2xl border border-slate-200 p-8">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">Los Ángeles</h3>
+            <a class="mt-3 block text-lg font-medium text-brand-700 underline" href="tel:+12135550147">+1 213 555 0147</a>
+          </li>
+          <li class="rounded-2xl border border-slate-200 p-8">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">Zaragoza</h3>
+            <a class="mt-3 block text-lg font-medium text-brand-700 underline" href="tel:+34976123456">+34 976 123 456</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- ============================= FOOTER ============================= -->
+    <footer class="border-t border-slate-200 bg-white">
+      <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-10 sm:flex-row lg:px-8">
+        <p class="text-sm text-slate-500">© 2025 TrackFlow. Todos los derechos reservados.</p>
+        <a
+          href="https://linkedin.com/company/trackflow"
+          class="inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition-colors hover:text-slate-900"
+          rel="noopener"
+          target="_blank"
+        >
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.98 3.5A2.5 2.5 0 002.5 6a2.5 2.5 0 002.48 2.5A2.5 2.5 0 007.5 6 2.5 2.5 0 004.98 3.5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.3c0-1.26-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21H9z" />
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+    </footer>
+
+    <!-- ============================= ASISTENTE VIRTUAL ============================= -->
+
+    <!-- Botón flotante de chat (visible en todas las secciones) -->
+    <button
+      type="button"
+      data-chat-open
+      aria-controls="chat-panel"
+      aria-expanded="false"
+      class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-ink-900 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-900/20 transition-transform hover:scale-105"
+    >
+      <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5M21 12a8 8 0 01-11.5 7.2L4 20l1-4.2A8 8 0 1121 12z" />
+      </svg>
+      <span>Asistente IA</span>
+    </button>
+
+    <!-- Panel de conversación -->
+    <section
+      id="chat-panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="chat-title"
+      class="fixed inset-x-0 bottom-0 z-50 hidden sm:inset-auto sm:bottom-24 sm:right-5"
+    >
+      <div
+        class="flex h-[80vh] max-h-[600px] w-full flex-col overflow-hidden border border-slate-200 bg-white shadow-2xl sm:h-[560px] sm:w-[380px] sm:rounded-2xl"
+      >
+        <!-- Encabezado -->
+        <header class="flex items-center justify-between gap-3 border-b border-slate-200 bg-ink-900 px-4 py-3 text-white">
+          <div class="flex items-center gap-2">
+            <span aria-hidden="true" class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-600">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h8M8 14h5M21 12a8 8 0 01-11.5 7.2L4 20l1-4.2A8 8 0 1121 12z" />
+              </svg>
+            </span>
+            <h2 id="chat-title" class="text-base font-semibold">Asistente TrackFlow</h2>
+          </div>
+          <button
+            type="button"
+            id="chat-close"
+            class="inline-flex h-8 w-8 items-center justify-center rounded-full text-white/80 hover:bg-white/10 hover:text-white"
+          >
+            <span class="sr-only">Cerrar el asistente</span>
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </header>
+
+        <!-- Historial de conversación (anuncia mensajes nuevos) -->
+        <div
+          id="chat-log"
+          class="flex-1 space-y-3 overflow-y-auto px-4 py-4"
+          role="log"
+          aria-live="polite"
+          aria-atomic="false"
+          aria-label="Historial de conversación con el asistente"
+          tabindex="0"
+        ></div>
+
+        <!-- Indicador de procesamiento -->
+        <div id="chat-typing" class="hidden px-4 pb-1" aria-live="polite">
+          <span class="sr-only">El asistente está escribiendo…</span>
+          <span class="inline-flex items-center gap-1" aria-hidden="true">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+          </span>
+        </div>
+
+        <!-- Acción para llevar los datos al formulario (aparece cuando hay datos) -->
+        <div class="px-4">
+          <button
+            type="button"
+            id="chat-prefill"
+            class="hidden w-full rounded-lg border border-brand-200 bg-brand-50 px-3 py-2 text-sm font-medium text-brand-700 hover:bg-brand-100"
+          >
+            Rellenar el formulario con mis datos
+          </button>
+        </div>
+
+        <!-- Campo para escribir -->
+        <form id="chat-form" class="flex items-end gap-2 border-t border-slate-200 p-3">
+          <div class="flex-1">
+            <label for="chat-input" class="sr-only">Escribe tu mensaje para el asistente</label>
+            <textarea
+              id="chat-input"
+              name="chat-input"
+              rows="1"
+              placeholder="Escribe tu mensaje…"
+              class="block w-full resize-none rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 focus:border-brand-500 focus:ring-0"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn-primary shrink-0 px-5 py-2 text-sm">Enviar</button>
+        </form>
+      </div>
+    </section>
+
+    <script type="module" src="./src/entry.js"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+# Bytecode y caché de Python
+__pycache__
+**/__pycache__
+*.pyc
+.pytest_cache
+.mypy_cache
+
+# Entornos virtuales locales
+.venv
+api/.venv
+
+# Variables de entorno locales
+.env
+.env.*
+
+# Tests (no necesarios para arrancar el servicio en runtime)
+api/tests
+
+# Logs y misc
+*.log
+.DS_Store

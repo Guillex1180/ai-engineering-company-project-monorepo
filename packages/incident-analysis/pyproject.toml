@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "incident-analysis"
+version = "0.1.0"
+description = "Lógica compartida de análisis de incidencias de TrackFlow (parser, validator, analyzer). Consumida por el CLI y la API."
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["incident_analysis*"]

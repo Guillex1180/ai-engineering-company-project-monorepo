@@ -1,0 +1,29 @@
+{
+  "name": "trackflow-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sitio web público de TrackFlow — Hito 1 (landing page + formulario de solicitud de información) + Asistente Virtual.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "serve": "serve -l 3000 .",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "serve:host": "serve -l tcp://0.0.0.0:3000 ."
+  },
+  "keywords": [
+    "trackflow",
+    "landing",
+    "tailwind"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.13",
+    "postcss": "^8.4.47",
+    "autoprefixer": "^10.4.20",
+    "serve": "^14.2.3"
+  }
+}
