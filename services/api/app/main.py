@@ -35,20 +35,29 @@ from incident_analysis.parser import ParseError, parse_text  # noqa: E402
 
 from .auth import router as auth_router  # noqa: E402
 from .inventory import router as inventory_router  # noqa: E402
+from .invoices import router as invoices_router  # noqa: E402
 
 app = FastAPI(title="TrackFlow API", version="0.1.0")
 
 # CORS: el backoffice (Next.js) corre en otro puerto en desarrollo.
+# `allow_origin_regex` habilita además los túneles temporales de demo
+# (*.trycloudflare.com) para poder compartir la plataforma desde otra red.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3100"],
-    allow_methods=["GET", "POST"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://localhost:3100",
+    ],
+    allow_origin_regex=r"https://.*\.trycloudflare\.com",
+    allow_methods=["GET", "POST", "PUT"],
     allow_headers=["*"],
 )
 
 # Módulos de dominio.
 app.include_router(auth_router)
 app.include_router(inventory_router)
+app.include_router(invoices_router)
 
 
 @app.get("/", include_in_schema=False)
@@ -79,6 +88,7 @@ def root() -> HTMLResponse:
       <li><code>POST /auth/login</code> — autenticación (backoffice)</li>
       <li><code>GET /inventory/products</code>, <code>GET /inventory/orders</code></li>
       <li><code>POST /inventory/orders/inbound</code>, <code>POST /inventory/orders/outbound</code></li>
+      <li><code>POST /invoices/presign</code> — URL prefirmada para subir factura PDF a S3</li>
     </ul>
   </div>
 </div></body></html>"""

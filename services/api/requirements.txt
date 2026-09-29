@@ -3,3 +3,6 @@ uvicorn==0.32.0
 python-multipart==0.0.12
 httpx==0.27.2
 pytest==8.3.3
+# Facturas (Fase 1): firma de URLs prefirmadas para subir PDFs a S3.
+# Opcional en local (el módulo degrada a modo simulado si no está o no hay bucket).
+boto3==1.35.36
